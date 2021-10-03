@@ -87,18 +87,19 @@ class LinkedList:
             tail.set_next(new_node)
 
     def remove(self, position):
-        if position == 0:
+        if position == 0:   # removes head node
             node = self.head
             post_node = self.location(1)
-            self.head = post.node
+            self.head = post_node
             del(node)
 
-        elif position == self.size():
+        elif position == self.size() - 1:  # removes tail node
             node = self.location(position)
             pre_node = self.location(position-1)
             pre_node.next = None
             del(node)
-        else:
+
+        else:  # removes other nodes
             node = self.location(position)
             pre_node = self.location(position-1)
             post_node = self.location(position+1)
@@ -135,15 +136,8 @@ class LinkedList:
                 place += 1
 
 
-# ToDo
-# add item
-# delete item
-# size of list
-# search
-# define complexity of each
-
 if __name__ == "__main__":
-    ''' These are shape for the functions of the class'''
+    ''' These are tests to check class functionality'''
 
     def shape(list, num):
         '''returns basic details about list'''
@@ -172,8 +166,9 @@ if __name__ == "__main__":
     list.add("second string")
     shape(list, 2)
 
-    # add 3rd item
+    # add 3rd and fourth item (needed for later tests)
     list.add("third string")
+    list.add("fourth string")
     shape(list, 3)
 
     # find search term
@@ -181,12 +176,21 @@ if __name__ == "__main__":
     location = list.search("second string")
     print("search term is at position " + str(location))
 
-    # find node at location
+    # find node at location (used to simplify deletion)
     shape(list, 5)
     node = list.location(2)
     print("item at position 2 is " + node.item)
 
-    # delete node
-    shape(list, 6)
+    # delete  inner node
     list.remove(1)
     shape(list, 6)
+
+    # delete head node
+    list.remove(0)
+    shape(list, 7)
+
+    # delete tail node
+    tail = list.final_node()
+    location = list.search(tail.item)
+    list.remove(location)
+    shape(list, 7)
