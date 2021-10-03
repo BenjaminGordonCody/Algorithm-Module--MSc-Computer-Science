@@ -4,7 +4,8 @@ This is an implemenation of linked lists using Python.
 In a project of my own I would probably implement this as a basic python list.
 Head and tail could be reached by simple indexing (ie list[0], list[-1]) and all
 the other functions required by this assignment are already built in functions 
-of the list type. This didn't feel like the spirit of the assignment.
+of the list type. This didn't feel like the spirit of the assignment. Instead I 
+used a two class solution with LinkedLists and Nodes.
 
 The example code given this week included getters and setter methods in its
 classes. As none of the variables in my classes are hidden, I felt a more
@@ -145,7 +146,7 @@ class LinkedList:
             return count
 
     def search(self, item, node="not specified", place=0):
-        "returns location of node containing searched for item"
+        "returns index of node containing searched for item"
         while True:
             if node == "not specified":
                 node = self.head
