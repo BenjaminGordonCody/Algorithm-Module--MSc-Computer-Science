@@ -16,7 +16,7 @@ My second function has O(2^n), because each instance of the function has to call
 two further instances to get its return value. This renders the function
 impractical very quickly.
 
-I created a testing function (timetaken) to measure the actual time each 
+I created a function (timetaken) to measure the actual time each 
 implementation took to find the 40th value of the sequence.
 
 fibonacci performed 40 function calls in under 0.001 seconds
@@ -33,15 +33,6 @@ def timetaken(func, arg):
     func(arg)
     end = time.time()
     return end-start
-
-
-def iterations_until_n_seconds(func, seconds):
-    time_taken = 0
-    i = 0
-    while time_taken < seconds:
-        i += 1
-        time_taken = timetaken(func, i)
-    return i
 
 
 def fibonacci(int, fig_a=0, fig_b=0, count=0):
@@ -86,11 +77,7 @@ if __name__ == "__main__":
     print(fibonacci(20))  # if this returns 6765, the function works
     print(concise_fib(20))  # if this returns 6765, the function works
 
-    # # time tests for each function
-    # n = 40  # position in sequence to request from functions
-    # print(timetaken(fibonacci, n))  # measured 0.0 seconds in test
-    # print(timetaken(concise_fib, n))  # measured 27.83 seconds in test
-
-    n = 0.001  # number of seconds to trial funcs against
-    print(iterations_until_n_seconds(fibonacci, n))
-    print(iterations_until_n_seconds(concise_fib, n))
+    # time tests for each function
+    n = 40  # position in sequence to request from functions
+    print(timetaken(fibonacci, n))  # measured 0.0 seconds in test
+    print(timetaken(concise_fib, n))  # measured 27.83 seconds in test
