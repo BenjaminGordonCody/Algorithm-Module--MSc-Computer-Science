@@ -35,6 +35,15 @@ def timetaken(func, arg):
     return end-start
 
 
+def iterations_until_n_seconds(func, seconds):
+    time_taken = 0
+    i = 0
+    while time_taken < seconds:
+        i += 1
+        time_taken = timetaken(func, i)
+    return i
+
+
 def fibonacci(int, fig_a=0, fig_b=0, count=0):
     """ 
     Returns the value of a position in the Fibonacci sequence.
@@ -77,7 +86,11 @@ if __name__ == "__main__":
     print(fibonacci(20))  # if this returns 6765, the function works
     print(concise_fib(20))  # if this returns 6765, the function works
 
-    # time tests for each function
-    n = 40  # position in sequence to request from functions
-    print(timetaken(fibonacci, n))  # measured 0.0 seconds in test
-    print(timetaken(concise_fib, n))  # measured 27.83 seconds in test
+    # # time tests for each function
+    # n = 40  # position in sequence to request from functions
+    # print(timetaken(fibonacci, n))  # measured 0.0 seconds in test
+    # print(timetaken(concise_fib, n))  # measured 27.83 seconds in test
+
+    n = 0.001  # number of seconds to trial funcs against
+    print(iterations_until_n_seconds(fibonacci, n))
+    print(iterations_until_n_seconds(concise_fib, n))
