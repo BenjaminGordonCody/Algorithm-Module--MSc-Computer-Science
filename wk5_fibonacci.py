@@ -85,6 +85,6 @@ if __name__ == "__main__":
 
     # time tests for each function
     n = 40  # position in sequence to request from functions
-    print(f"'fibonacci' took {timetaken(fibonacci, n)} to find position {n}")
+    print(f"'fibonacci' took {timetaken(fibonacci, n)}s to find position {n}")
     print(
-        f"'concise_fib' took {timetaken(concise_fib, n)} to find position {n}")
+        f"'concise_fib' took {timetaken(concise_fib, n)}s to find position {n}")
