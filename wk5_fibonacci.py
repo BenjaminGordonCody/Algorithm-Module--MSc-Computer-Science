@@ -1,12 +1,12 @@
 """
-In this piece of coursework we had to think about complexity in recursive 
-functions. We were asked to write a program that returned the nth position in 
-the Fibonacci sequence. My initial attempt (fibonacci) starts from 0 and 
+In this piece of coursework we had to think about complexity in recursive
+functions. We were asked to write a program that returned the nth position in
+the Fibonacci sequence. My initial attempt (fibonacci) starts from 0 and
 recursively calls itself until it has reached the nth position. This worked fine
 but I wondered if there was a more elegant solution.
 
 My second attempt(concise_fib) took the opposite approach and started by
-defining the nth term by calling itself for the two previous positions. This 
+defining the nth term by calling itself for the two previous positions. This
 code felt more elegant, but I suspected it would take more resources.
 
 My first function has O(n), because it calls itself once for every position
@@ -16,7 +16,7 @@ My second function has O(2^n), because each instance of the function has to call
 two further instances to get its return value. This renders the function
 impractical very quickly.
 
-I created a function (timetaken) to measure the actual time each 
+I created a function (timetaken) to measure the actual time each
 implementation took to find the 40th value of the sequence.
 
 fibonacci performed 40 function calls in under 0.001 seconds
@@ -24,21 +24,14 @@ concise_fib performed 1,099,511,627,776 function calls in 27.83 seconds
 
 """
 # imports
-import time
-
-
-def timetaken(func, arg):
-    """Measures the time it takes for a single argument function to execute"""
-    start = time.time()
-    func(arg)
-    end = time.time()
-    return end-start
+import time  # used for testing time performance of functions
 
 
 def fibonacci(int, fig_a=0, fig_b=0, count=0):
-    """ 
+    """
     Returns the value of a position in the Fibonacci sequence.
     Figure A and Figure B are the values of the two previous positions.
+    'int' is the position we are trying to discover.
     """
     # checking the input can be understood
     if int < 1:
@@ -64,20 +57,32 @@ def fibonacci(int, fig_a=0, fig_b=0, count=0):
 
 
 def concise_fib(n):
+    """returns nth potion of Fibonacci sequence"""
     if n == 0:
         return 0
     if n == 1:
         return 1
     else:
-        return(concise_fib(n-1) + concise_fib(n-2))
+        return concise_fib(n-1) + concise_fib(n-2)
 
 
 if __name__ == "__main__":
+
+    def timetaken(func, arg):
+        """Measures the time it takes for a single argument function to execute"""
+        start = time.time()
+        func(arg)
+        end = time.time()
+        return end-start
+
     """Tests of functions"""
-    print(fibonacci(20))  # if this returns 6765, the function works
-    print(concise_fib(20))  # if this returns 6765, the function works
+    if fibonacci(20) == 6765:
+        print("'fibonacci' accurately identifies 20th position as 6765")
+    if concise_fib(20) == 6765:
+        print("'concise_fib' accurately identifies 20th position as 6765")
 
     # time tests for each function
     n = 40  # position in sequence to request from functions
-    print(timetaken(fibonacci, n))  # measured 0.0 seconds in test
-    print(timetaken(concise_fib, n))  # measured 27.83 seconds in test
+    print(f"'fibonacci' took {timetaken(fibonacci, n)} to find position 40")
+    print(
+        f"'concise_fib' took {timetaken(concise_fib, n)} to find position 40")
