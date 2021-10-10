@@ -22,6 +22,8 @@ implementation took to find the 40th value of the sequence.
 fibonacci performed 40 function calls in under 0.001 seconds
 concise_fib performed 1,099,511,627,776 function calls in 27.83 seconds
 
+My initial function is the more efficient one. 
+
 """
 # imports
 import time  # used for testing time performance of functions
@@ -67,15 +69,15 @@ def concise_fib(n):
 
 
 if __name__ == "__main__":
+    """Tests of functions"""
 
     def timetaken(func, arg):
         """Measures the time it takes for a single argument function to execute"""
         start = time.time()
         func(arg)
         end = time.time()
-        return end-start
+        return end - start
 
-    """Tests of functions"""
     if fibonacci(20) == 6765:
         print("'fibonacci' accurately identifies 20th position as 6765")
     if concise_fib(20) == 6765:
@@ -83,6 +85,6 @@ if __name__ == "__main__":
 
     # time tests for each function
     n = 40  # position in sequence to request from functions
-    print(f"'fibonacci' took {timetaken(fibonacci, n)} to find position 40")
+    print(f"'fibonacci' took {timetaken(fibonacci, n)} to find position {n}")
     print(
-        f"'concise_fib' took {timetaken(concise_fib, n)} to find position 40")
+        f"'concise_fib' took {timetaken(concise_fib, n)} to find position {n}")
