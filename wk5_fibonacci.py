@@ -9,10 +9,10 @@ My second attempt(concise_fib) took the opposite approach and started by
 defining the nth term by calling itself for the two previous positions. This
 code felt more elegant, but I suspected it would take more resources.
 
-My first function has O(i), because it calls itself once for every position
+My first function has O(n), because it calls itself once for every position
 between 0 and i.
 
-My second function has O(2^i), because each instance of the function has to call
+My second function has O(2^n), because each instance of the function has to call
 two further instances to get its return value. This renders the function
 impractical very quickly.
 
