@@ -1,4 +1,16 @@
 class LinkedList:
+    """This class was provided with only an __init__ method. I was tasked with
+    adding a sort function.
+
+    I decided to use a basic bubble sort because more efficient sorts would
+    recquire indexing into the data. While I could have added the ability to
+    index into the LinkedList class, I assumed that if I had wanted an indexable
+    structure, I would have used one of Python's built in types. 
+
+    The print() function was also modelled on the recursive __init__ function 
+    that was provided. 
+    """
+
     def __init__(self, data):
         self.label = data[0][0]
         self.value = data[0][1]
@@ -18,11 +30,22 @@ class LinkedList:
     def bubble(self, head, swap_count=0):
         """
         Performs a single 'bubble' of a bubble sort, ie makes a single
-        pass across the linked list. Returns 'True' if another pass is needed,
-        returns False if the list is fully sorted.
+        pass across the linked list. Each pass 'bubbles' another number to its
+        correct place at the end of the list. 
 
-        Seperating the bubble sort into seperate 'bubbles' is needed to avoid 
+        Returns 'True' if another pass is needed, returns False if the list is
+        fully sorted. The function intereprets a pass through that has not
+        recquired a swap (swap_count = 0) to mean that sorting is complete.
+
+        Traversal of the list is implemented using recursion, following
+        the same principles as the __init__ method of the LinkedList class that
+        was provided.
+
+        Seperating the bubble sort into seperate 'bubbles' is needed to avoid
         causing 'exceeds recursion limit' errors on big lists.
+
+        Each individual call to bubble has a complexity of O(n) as it cycles
+        through the full length of the list once.
         """
 
         # have we finished sorting?
@@ -42,6 +65,17 @@ class LinkedList:
         return self.tail.bubble(head, swap_count)
 
     def bubble_sort(self):
+        """Continues calling the bubble() method until each node is sorted.
+        Best case complexity for a bubble sort is O(n). This is only possible if
+        the input list is already sorted, and the algorithm only has to do a
+        single sweep of the list to confirm it is ordered.
+
+        The worst case complexity is O(n^2). Which means every node is compared
+        with every other node. For most implementations of bubble sort, the
+        average and worst case complexity are the same. In my implementation
+        average complexity is slightly lower as each 'bubble' checks if any
+        further sorting is needed. This will potentially bypass some redundant
+        passes."""
         unsorted = True
         while unsorted:
             unsorted = self.bubble(self)
@@ -61,6 +95,7 @@ countries = LinkedList([
 print("UNSORTED LIST")
 countries.print()
 print("\n")
+
 print("SORTED LIST")
 countries.bubble_sort()
 countries.print()
