@@ -28,12 +28,6 @@ class huffman_encoding_maker:
 
             self.code = code
 
-        def __str__(self):
-             string = f"""
-             Letter {self.character} appears {self.count} times.
-             Its code is {self.code}.
-             """
-             return string
 
     def __count_of_characters_in_(self, string):
         """This function runs through a string and makes a dictionary with a count of how often each character appears within it.
@@ -102,13 +96,16 @@ class huffman_encoding_maker:
 
         self.encoding_table = {}
         self.get_codes_from_tree()
+
+        # TODO
+        # encoded_string = self.encode(string)
+        # decoding_function = self.get_decoding_function()
+        # return encoded_string, decoding_function
     
         
-
-
 if __name__ == "__main__":
 
-    sample = "ABBCCCDDDDEEEEEFFFFFF"
+    sample = "a bb ccc dddd "
     h = huffman_encoding_maker(sample)
     print(h.encoding_table)
     
