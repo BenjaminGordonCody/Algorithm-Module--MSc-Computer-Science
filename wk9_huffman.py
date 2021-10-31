@@ -307,7 +307,8 @@ if __name__ == "__main__":
         print("\nThe original sample reads:")
         print(sample)
         print(f"\n The encoding table looks like:")
-        print(h.encoding_table)
+        for key, value in h.encoding_table.items():
+            print(key + " : " + value)
         print("\nThe encoded binary (read as an int, to save space on the terminal) reads:")
         print(encoded)
         print("\nAfter decoding it reads:")
@@ -317,4 +318,4 @@ if __name__ == "__main__":
             f"after encoding it is {size_of_encoded} bytes.")
         print(
             "The ratio of original:encoded is " \
-            f"1:{round(size_of_encoded/size_of_sample, 2)}")
+            f"1:{round(size_of_encoded/size_of_sample, 2)}\n")
