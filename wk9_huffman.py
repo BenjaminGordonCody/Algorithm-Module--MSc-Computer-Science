@@ -1,26 +1,29 @@
 """
-On complexity:
-- There are two input variables to consider when talking about the complexity of this program. One, input length, I have annotated as 'n'. The other, the number of unique characters in the input, I have annotated 'u'.
+This program defines a Huffman_encoding_maker object. The object is initialised with the string that is to be encoded.
 
-The more unique characters in an input string, the bigger the tree needed to encode those characters, and the more complex the encoded and decoding process. 
+Subfunctions in the class then work to encode the string as follows:
 
-However, this class is set up to decode ascii encoded characters. This makes the worst case for u 127, ie the 127 characters of ascii encoding. n, however, has no upper limit.
+1) _count_of_characters() counts how many times each character in the string appears
+2) _list_of_nodes_from_counts() uses that count to make a list of node objects, one for each unique character. These will be the 'leaves' of the Huffman binary tree.
+3) _place_nodes_in_tree() then works backwards from those leaves to make the rest of the binary tree.
+4) _get_codes_from_tree() then traverses that tree to generate the Huffman codes for each character in the original message.
+5) encode() takes the message and encodes it into a binary string using the codes just generated.
+6 _get_decoding_function() returns a decoding function that already knows then unique encoding for this message.
+7) decode() decodes the encoded message.
 
-
-
+I have also included test functions in the 'if __name__ == "main"' section of the file, to test out functionality.
 """
 
 # imports
 from sys import getsizeof #used for size comparison when testing the function
 
 
-class huffman_encoding_maker:
+class Huffman_encoding_maker:
     """
     This class works as a container for all the different functions that are required to encode using the Huffman schema.
     It takes the string to be encoded as its only argument, and gennerate two final objects; the encoded string, and a function for decoding that string.
 
     I chose to use a class based implementation to make it easier to reuse this code in other programs. I've also tried to keep my individual functions as short as possible, which could lead to a confusing number of names in the top-level namespace if not contained within a class. 
-    Overall complexity is XXXXXXX, which is calculated by summing the complexities outlined for each subfunction within the class.
     """
 
     class Huffman_Node:
@@ -287,7 +290,7 @@ if __name__ == "__main__":
   for sample in samples:
         
         # initiate Huffman Encoding object
-        h = huffman_encoding_maker(sample)
+        h = Huffman_encoding_maker(sample)
 
         # get encoded string from object
         encoded = h.encoded_string
