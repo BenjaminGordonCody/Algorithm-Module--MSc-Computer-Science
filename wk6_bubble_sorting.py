@@ -17,7 +17,9 @@ class LinkedList:
         self.tail = None if (len(data) == 1) else LinkedList(data[1:])
 
     def swap_with_next(self):
-        """ Swaps the 'label' and 'value' attributes of two list nodes."""
+        """ Swaps the 'label' and 'value' attributes of two list nodes. This 
+        swapping function is how the bubble() method rearranges node items.
+        """
         temp_data = [(self.tail.label, self.tail.value)]
         temp = LinkedList(temp_data)
 
